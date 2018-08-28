@@ -190,11 +190,17 @@ const Database = {
       return v;
     } catch (e) {
       console.log(e);
-      throw new Error(
-        `Error when reading the directory "${args.path}". Message: "${
-          e.message
-        }"`
-      );
+      if (e.message.indexOf('EPERM') > -1) {
+        throw new Error(
+          'Angular Console does not have the needed permissions to open this directory.'
+        );
+      } else {
+        throw new Error(
+          `Error when reading the directory "${args.path}". Message: "${
+            e.message
+          }"`
+        );
+      }
     }
   }
 };
