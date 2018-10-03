@@ -98,12 +98,16 @@ function createWindow() {
       try {
         startFrontend(frontendPort);
         try {
-          win = new BrowserWindow(JSON.parse(store.get('windowBounds')));
+          win = new BrowserWindow({
+            ...JSON.parse(store.get('windowBounds')),
+            show: false
+          });
         } catch {
           win = new BrowserWindow({
             width: 800,
             height: 1400,
-            icon: path.join(__dirname, '/assets/icons/build/icon.png')
+            icon: path.join(__dirname, '/assets/icons/build/icon.png'),
+            show: false
           });
         }
         if (fileExists(path.join(currentDirectory, 'angular.json'))) {
@@ -122,6 +126,9 @@ function createWindow() {
           event.sender.send('backend.ready', backendPort);
         });
 
+        win.on('ready-to-show', () => {
+          win.show();
+        });
         win.on('close', () => {
           saveWindowInfo();
           quit();
