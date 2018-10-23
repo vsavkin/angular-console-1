@@ -17,4 +17,14 @@
       <mat-divider></mat-divider>
     </ng-container>
   </mat-list>
+
+  <hr>
+  <ui-sankey [data]="depGraph" (nodeSelected)="onNodeSelected($event)"></ui-sankey>
+
+  <div>
+    <button (click)="testAffected()">Test affected</button>    
+    <button (click)="testSelected()" [disabled]="!selected">Test selected</button>
+  </div>
+
+  <hr>
 </div>

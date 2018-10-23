@@ -42,6 +42,7 @@ import { TerminalComponent } from './terminal/terminal.component';
 import { BuildStatusComponent } from './build-status/build-status.component';
 import { CommandOutputComponent } from './command-output/command-output.component';
 import { TestStatusComponent } from './test-status/test-status.component';
+import { SankeyComponent } from './sankey/sankey.component';
 
 const IMPORTS = [
   CdkTreeModule,
@@ -104,7 +105,8 @@ const PUBLIC_DECLARATIONS = [
   TaskRunnerComponent,
   TaskSelectorComponent,
   TerminalComponent,
-  TestStatusComponent
+  TestStatusComponent,
+  SankeyComponent
 ];
 
 @NgModule({
