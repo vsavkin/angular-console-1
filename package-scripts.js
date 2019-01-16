@@ -37,12 +37,12 @@ module.exports = {
       serve: 'ng serve angular-console'
     },
     server: {
-      gen: nps.series.nps(
+      gen: nps.series.  nps(
         'server.gen-apollo-angular',
         'server.gen-graphql-types'
       ),
-      'gen-graphql-types': 'gql-gen --config codegen-server.yml',
-      'gen-apollo-angular': 'gql-gen --config codegen-client.js',
+      'gen-graphql-types': 'gql-gen --config ./tools/scripts/codegen-server.yml',
+      'gen-apollo-angular': 'gql-gen --config ./tools/scripts/codegen-client.js',
       build: electronOrVscode('ng build APPLICATION --prod --maxWorkers=4'),
       'gen-and-build': electronOrVscode(
         nps.series.nps('server.gen', 'server.build.APPLICATION')
@@ -175,8 +175,8 @@ module.exports = {
     },
     format: {
       default: nps.series.nps('format.write'),
-      write: 'prettier {apps,libs}/**/*.{ts,css,scss,html} --write',
-      check: 'prettier --list-different {apps,libs}/**/*.{ts,css,scss,html}'
+      write: 'prettier {apps,libs,tools}/**/*.{js,ts,css,scss,html,json} --write',
+      check: 'prettier --list-different {apps,libs,tools}/**/*.{js,ts,css,scss,html,json}'
     },
     lint: nps.concurrent({
       formatCheck: 'nps format.check',

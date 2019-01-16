@@ -10,7 +10,7 @@ import {
   ViewColumn
 } from 'vscode';
 
-import { startServer } from './app/express-server.factory';
+import { startServer } from './app/start-server';
 import { createWebViewPanel } from './app/webview.factory';
 
 let server: Server | undefined;
