@@ -33,6 +33,7 @@ export class Commands {
     detailedStatusCalculator: DetailedStatusCalculator<any>,
     addToRecent: boolean = true
   ) {
+    console.log(type, id, command, workspace);
     const item = {
       id,
       type,

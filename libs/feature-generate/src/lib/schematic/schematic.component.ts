@@ -115,12 +115,14 @@ export class SchematicComponent implements OnInit {
           this.out.reset();
         }
 
+        console.log(p);
         return this.schematicCollectionsByNameGQL.fetch(p);
       }),
       map((r: any) => {
         if (!r) {
           return null;
         }
+        console.log(r.data.workspace);
         const schematic: Schematic =
           r.data.workspace.schematicCollections[0].schematics[0];
 

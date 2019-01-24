@@ -9,3 +9,7 @@ if (os.platform() === 'win32') {
 }
 shell.rm('-rf', 'node_modules/cypress/node_modules/@types');
 shell.rm('-rf', 'node_modules/@types/sinon-chai/node_modules/@types');
+
+shell.rm('-rf', 'node_modules/@nrwl/azure');
+
+shell.exec(`cp -r nx-azure-support/azure node_modules/@nrwl/azure`);

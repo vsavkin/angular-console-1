@@ -1,0 +1,91 @@
+<div *ngIf="(filteredProjects$ | async) as projectCategories">
+  <div
+    class="project-filter-container"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <input
+      placeholder="Filter projects..."
+      #projectFilter
+      fxFlex
+      [formControl]="projectFilterFormControl"
+      id="filter"
+    />
+    <mat-icon
+      class="filter-icon"
+      (click)="projectFilterFormControl.setValue(''); projectFilter.select()"
+    >
+      {{ projectFilterFormControl.value ? 'clear' : 'filter_list' }}
+    </mat-icon>
+  </div>
+  <mat-list>
+    <div [style.height]="viewportHeight$ | async" class="field-viewport">
+      <ng-container
+        *ngIf="projectCategories['@nrwl/azure:deploy'] as azureProjects"
+      >
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Azure Projects</h3>
+        <mat-divider></mat-divider>
+        <ng-container *ngFor="let p of azureProjects">
+          <mat-list-item [ngClass]="p.projectType" [disableRipple]="true">
+            <div class="project-type" mat-line>{{ p.projectType }}</div>
+            <div class="project-name" mat-line>{{ p.name }}</div>
+            <div class="project-root" mat-line *ngIf="p.root">
+              <mat-icon>folder_open</mat-icon>
+              {{ p.root }}
+            </div>
+            <div
+              fxLayoutWrap
+              fxFlex="shrink"
+              fxLayout="row"
+              fxLayoutGap="12px"
+              fxLayoutAlign="end center"
+            >
+              <button
+                *ngFor="let a of p.actions"
+                mat-stroked-button
+                [routerLink]="a.link"
+              >
+                {{ a.actionDescription }}
+              </button>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </ng-container>
+      <ng-container
+        *ngIf="projectCategories['@nrwl/builders:node-build'] as nodeProjects"
+      >
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Undeployed Projects</h3>
+        <mat-divider></mat-divider>
+        <ng-container *ngFor="let p of nodeProjects">
+          <mat-list-item [ngClass]="p.projectType" [disableRipple]="true">
+            <div class="project-type" mat-line>{{ p.projectType }}</div>
+            <div class="project-name" mat-line>{{ p.name }}</div>
+            <div class="project-root" mat-line *ngIf="p.root">
+              <mat-icon>folder_open</mat-icon>
+              {{ p.root }}
+            </div>
+            <div
+              fxLayoutWrap
+              fxFlex="shrink"
+              fxLayout="row"
+              fxLayoutGap="12px"
+              fxLayoutAlign="end center"
+            >
+              <button
+                *ngFor="let a of p.actions"
+                mat-stroked-button
+                [routerLink]="a.link"
+              >
+                {{ a.actionDescription }}
+              </button>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </ng-container>
+    </div>
+  </mat-list>
+</div>

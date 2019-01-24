@@ -41,6 +41,18 @@ export class TargetComponent implements OnInit {
     commands: [],
     valid: true
   });
+  commandArrayObs$ = this.commandArray$.pipe(
+    map(c => {
+      if (c.commands.length < 2) {
+        return c;
+      }
+      const [task, project, ...rest] = c.commands;
+      return {
+        ...c,
+        commands: ['run', `${project}:${task}`, ...rest]
+      };
+    })
+  );
   command$: Observable<string>;
   commandOutput$: Observable<IncrementalCommandOutput>;
   @ViewChild(CommandOutputComponent) out: CommandOutputComponent;
@@ -116,12 +128,13 @@ export class TargetComponent implements OnInit {
     );
 
     this.commandOutput$ = this.ngRun$.pipe(
-      withLatestFrom(this.commandArray$),
+      withLatestFrom(this.commandArrayObs$),
       tap(() => {
         this.flags.hideFields();
         this.taskRunner.terminalVisible$.next(true);
       }),
       switchMap(([_, c]) => {
+        console.log(c.commands.join());
         this.out.reset();
         return this.runner.runCommand(
           this.runNgGQL.mutate({
@@ -136,13 +149,13 @@ export class TargetComponent implements OnInit {
       refCount()
     );
 
-    this.command$ = this.commandArray$.pipe(
+    this.command$ = this.commandArrayObs$.pipe(
       map(c => `ng ${this.serializer.argsToString(c.commands)}`)
     );
   }
 
   getContextTitle(project: Project) {
-    return `ng ${project.architect[0].name} ${project.name}`;
+    return `ng ${project.name}:${project.architect[0].name}`;
   }
 
   path() {
@@ -154,6 +167,7 @@ export class TargetComponent implements OnInit {
   }
 
   onFlagsChange(e: { commands: string[]; valid: boolean }) {
+    console.log(e);
     setTimeout(() => this.commandArray$.next(e), 0);
     this.ngRunDisabled$.next(!e.valid);
   }

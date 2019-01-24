@@ -6,6 +6,10 @@ import {
   FeatureGenerateModule,
   generateRoutes
 } from '@angular-console/feature-generate';
+import {
+  FeatureDeployModule,
+  deployRoutes
+} from '@angular-console/feature-deploy';
 import { FeatureRunModule, runRoutes } from '@angular-console/feature-run';
 import { settingsRoutes } from '@angular-console/feature-settings';
 import { UiModule } from '@angular-console/ui';
@@ -60,6 +64,11 @@ export const workspaceRoutes: Route[] = [
       },
       { path: '', pathMatch: 'full', redirectTo: 'projects' },
       {
+        data: { state: 'deploy' },
+        path: 'deploy',
+        children: deployRoutes
+      },
+      {
         data: { state: 'extensions' },
         path: 'extensions',
         children: extensionsRoutes
@@ -86,6 +95,7 @@ export const workspaceRoutes: Route[] = [
   imports: [
     MatDialogModule,
     RouterModule,
+    FeatureDeployModule,
     FeatureExtensionsModule,
     FeatureGenerateModule,
     FeatureRunModule,

@@ -95,6 +95,7 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
       url: 'extensions',
       title: 'Extensions'
     },
+    { icon: 'cloud', url: 'deploy', title: 'Deploy' },
     { icon: 'settings', url: 'settings', title: 'Settings' }
   ];
 

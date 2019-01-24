@@ -80,3 +80,13 @@ cp.execSync(
   { cwd: tmp, stdio: [0, 1, 2] }
 );
 shell.mv(path.join(tmp, 'proj-nx'), './tmp/proj-nx');
+
+shell.exec(`
+for dir in ./tmp/*/
+do
+    dir=\${dir%*/}
+    rm -rf $dir/node_modules/@nrwl
+    cp -r node_modules/@nrwl $dir/node_modules/@nrwl
+    echo $dir
+done
+`);

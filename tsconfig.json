@@ -50,6 +50,7 @@
         "libs/feature-settings/src/index.ts"
       ],
       "@angular-console/server": ["libs/server/src/index.ts"],
+      "@angular-console/feature-deploy": ["libs/feature-deploy/src/index.ts"],
       "@angular-console/environment": ["libs/environment/src/index.ts"]
     },
     "module": "es2015"
