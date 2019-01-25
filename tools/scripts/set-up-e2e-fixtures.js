@@ -81,12 +81,25 @@ cp.execSync(
 );
 shell.mv(path.join(tmp, 'proj-nx'), './tmp/proj-nx');
 
+const baseDir = './';
+
 shell.exec(`
-for dir in ./tmp/*/
+for dir in ${baseDir}tmp/*/
 do
     dir=\${dir%*/}
-    rm -rf $dir/node_modules/@nrwl
-    cp -r node_modules/@nrwl $dir/node_modules/@nrwl
+    rm -rf ${baseDir}$dir/node_modules/@nrwl
+    cp -r ${baseDir}node_modules/@nrwl ${baseDir}$dir/node_modules/@nrwl
     echo $dir
 done
 `);
+
+const projNxPackageJson = fs
+  .readFileSync(path.join('tmp', 'proj-nx', 'package.json'))
+  .toString();
+fs.writeFileSync(
+  path.join('tmp', 'proj-nx', 'package.json'),
+  projNxPackageJson.replace(
+    'nx help"',
+    'nx help", "postinstall": "node ../../tools/scripts/link-nodemodules.js ../.."'
+  )
+);

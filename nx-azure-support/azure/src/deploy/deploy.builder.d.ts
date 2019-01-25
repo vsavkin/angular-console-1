@@ -8,6 +8,8 @@ export interface DeployArgs {
         type: 'git' | 'zip';
         remote: string;
     };
+    username: string;
+    password: string;
 }
 export default class DeployBuilder implements Builder<DeployArgs> {
     private context;

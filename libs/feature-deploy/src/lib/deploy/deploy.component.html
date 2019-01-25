@@ -48,8 +48,24 @@
               >
                 {{ a.actionDescription }}
               </button>
+              <button mat-stroked-button (click)="p.showLogs = !p.showLogs">
+                {{ p.showLogs ? 'Hide' : 'Show' }} Logs
+              </button>
             </div>
           </mat-list-item>
+          <ui-task-runner
+            *ngIf="p.showLogs"
+            [terminalWindowTitle]="'Logs from Azure will be displayed here...'"
+          >
+            <ui-command-output
+              [emptyTemplate]="noLogsMessage"
+              [activeView]="'terminal'"
+            >
+            </ui-command-output>
+            <ng-template #noLogsMessage
+              >Logs from Azure will be displayed here...</ng-template
+            >
+          </ui-task-runner>
           <mat-divider></mat-divider>
         </ng-container>
       </ng-container>

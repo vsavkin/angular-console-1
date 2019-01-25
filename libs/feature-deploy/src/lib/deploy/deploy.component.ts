@@ -78,11 +78,15 @@ export class DeployComponent implements OnInit {
   private createActions(p: any) {
     const builderName = getBuilderName(p);
     if (builderName === '@nrwl/azure:deploy') {
-      return [...createLinkForTask(p, 'deploy', 'Deploy')] as any[];
+      return [
+        ...createLinkForTask(p, 'deploy', 'Deploy'),
+        ...createLinkForSchematic(p, '@nrwl/azure', 'appconfig', 'Add Config'),
+        ...createLinkForSchematic(p, '@nrwl/azure', 'cosmosdb', 'Add Cosmos DB')
+      ] as any[];
     }
     if (builderName === '@nrwl/builders:node-build') {
       return [
-        ...createLinkForSchematic(p, '@nrwl/azure', 'appconfig', 'Config')
+        ...createLinkForSchematic(p, '@nrwl/azure', 'appconfig', 'Add Config')
       ] as any[];
     }
     return [];
