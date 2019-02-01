@@ -54,7 +54,7 @@ export class CurrentWorkspaceTreeProvider extends AbstractTreeProvider<
     return Promise.resolve(
       [
         ...(this.currentWorkspace
-          ? ['Projects', 'Generate', 'Tasks', 'Extensions']
+          ? ['Projects', 'Generate', 'Tasks', 'Extensions', 'Azure']
           : []),
         'Connect',
         'Settings'

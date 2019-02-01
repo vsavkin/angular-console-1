@@ -15,6 +15,7 @@ export type WorkspaceRouteTitle =
   | 'Projects'
   | 'Generate'
   | 'Tasks'
+  | 'Azure'
   | 'Connect'
   | 'Extensions'
   | 'Settings';
@@ -23,6 +24,7 @@ const ROUTE_TO_ICON_MAP = new Map<WorkspaceRouteTitle | undefined, string>([
   ['Projects', 'angular-logo.svg'],
   ['Generate', 'computing.svg'],
   ['Tasks', 'running_process2.svg'],
+  ['Azure', 'angular-logo.svg'],
   ['Connect', 'Nrwl_ColorIcon.svg'],
   ['Extensions', 'plugin.svg'],
   ['Settings', 'gear.svg']
@@ -110,6 +112,17 @@ export function getWorkspaceRoute(
         return `workspace/${encodeURIComponent(
           workspacePath
         )}/${workspaceRouteTitle.toLowerCase()}`;
+      } else {
+        return 'workspaces';
+      }
+    case 'Azure':
+      const workspacePath1: any = workspaceDef
+        ? workspaceDef.path
+        : workspace.workspaceFolders &&
+          workspace.workspaceFolders[0].uri.fsPath;
+
+      if (workspacePath1) {
+        return `workspace/${encodeURIComponent(workspacePath1)}/deploy`;
       }
   }
 

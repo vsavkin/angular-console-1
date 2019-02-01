@@ -55,7 +55,7 @@ export class RecentWorkspacesTreeProvider extends AbstractTreeProvider<
 
     if (workspaceDefinition) {
       return Promise.resolve(
-        ['Projects', 'Generate', 'Tasks', 'Extensions'].map(
+        ['Projects', 'Generate', 'Tasks', 'Extensions', 'Azure'].map(
           route =>
             new WorkspaceRoute(
               workspaceDefinition,
