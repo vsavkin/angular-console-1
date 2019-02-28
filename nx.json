@@ -54,6 +54,9 @@
     },
     "environment": {
       "tags": []
+    },
+    "feature-deploy": {
+      "tags": []
     }
   }
 }

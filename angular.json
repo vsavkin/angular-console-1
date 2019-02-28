@@ -435,6 +435,34 @@
         }
       }
     },
+    "feature-deploy": {
+      "root": "libs/feature-deploy",
+      "sourceRoot": "libs/feature-deploy/src",
+      "projectType": "library",
+      "prefix": "angular-console",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/feature-deploy/tsconfig.lib.json",
+              "libs/feature-deploy/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/feature-deploy/jest.config.js",
+            "tsConfig": "libs/feature-deploy/tsconfig.spec.json",
+            "setupFile": "libs/feature-deploy/src/test-setup.ts"
+          }
+        }
+      }
+    },
     "environment": {
       "root": "libs/environment",
       "sourceRoot": "libs/environment/src",

@@ -64,6 +64,7 @@ export class CurrentWorkspaceTreeProvider extends AbstractTreeProvider<
         'Generate',
         'Tasks',
         'Extensions',
+        'Azure',
         'Connect',
         'Settings'
       ].map(
