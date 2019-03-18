@@ -77,7 +77,7 @@
     ]
   },
   "dependencies": {
-    "@nrwl/nx": "7.5.2",
+    "@nrwl/nx": "7.7.2",
     "node-pty-prebuilt": "0.7.6",
     "semver": "5.6.0",
     "source-map-explorer": "^1.7.0",
@@ -104,10 +104,10 @@
     "@nestjs/common": "5.7.0",
     "@nestjs/core": "5.7.0",
     "@nestjs/graphql": "5.5.1",
-    "@nrwl/angular-console-enterprise-electron": "0.0.40",
-    "@nrwl/angular-console-enterprise-frontend": "0.0.40",
-    "@nrwl/builders": "7.5.2",
-    "@nrwl/schematics": "7.5.2",
+    "@nrwl/angular-console-enterprise-electron": "0.0.41",
+    "@nrwl/angular-console-enterprise-frontend": "0.0.41",
+    "@nrwl/builders": "7.7.2",
+    "@nrwl/schematics": "7.7.2",
     "@schematics/angular": "7.3.1",
     "@types/d3-hierarchy": "^1.1.6",
     "@types/d3-selection": "^1.4.1",
